@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<body>
+<div layout:fragment="content">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Task list</h2>
+        <a class="btn btn-primary" th:href="@{/add}">Add task</a>
+    </div>
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Deadline</th>
+            <th>Completed</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.key}"></td>
+            <td th:text="${task.value.name}"></td>
+            <td th:text="${task.value.deadlineDate}"></td>
+            <td>
+                <span th:text="${task.value.completed} ? 'Yes' : 'No'"></span>
+            </td>
+            <td>
+                <a class="btn btn-sm btn-info" th:href="@{/task/{id}(id=${task.key})}">Details</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<body>
+<div layout:fragment="content">
+    <h2 style="text-align:center;">Add task</h2>
+
+    <form method="post" action="/add" style="width:300px; margin:0 auto;">
+        <label>Name:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Deadline:</label><br>
+        <input type="date" name="deadlineDate" required><br><br>
+
+        <label>Description:</label><br>
+        <textarea name="description" rows="3" cols="30"></textarea><br><br>
+
+        <button type="submit">Add task</button>
+    </form>
+</div>
+</body>
+</html>
