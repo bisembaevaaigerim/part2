@@ -4,28 +4,34 @@
       layout:decorate="~{layout.html}">
 <body>
 <div layout:fragment="content">
-    <h2 style="text-align:center;">Task Details</h2>
+    <div class="card" style="max-width: 600px; margin: 0 auto;">
+        <div class="card-body">
+            <h3 class="text-center mb-4">Task Details</h3>
+            <form th:action="@{/edit/{id}(id=${task.id})}" method="post">
+                <input type="hidden" th:value="${task.id}" name="id">
+                <div class="mb-3">
+                    <label>Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" th:value="${task.name}" required>
+                    <label>Deadline:</label>
+                    <input type="date" id="deadlineDate" name="deadlineDate" class="form-control" th:value="${task.deadlineDate}" required>
+                </div>
 
-    <form th:action="@{'/edit/' + ${task.id}}" method="post" style="width:300px; margin:0 auto;">
-        <input type="hidden" th:value="${task.id}" name="id">
+                <div class="form-check mb-3">
+                    <input type="checkbox" id="completed" name="completed" class="form-check-input" th:checked="${task.completed}">
+                    <label>Completed</label>
+                </div>
 
-        <label>Name:</label><br>
-        <input type="text" name="name" th:value="${task.name}" required><br><br>
+                <div class="mb-3">
+                    <label>Description:</label>
+                    <textarea id="description" name="description" class="form-control" rows="3" th:text="${description}"></textarea>
+                </div>
 
-        <label>Deadline:</label><br>
-        <input type="date" name="deadlineDate" th:value="${task.deadlineDate}" required><br><br>
-
-        <label>Completed:</label>
-        <input type="checkbox" name="completed" th:checked="${task.completed}"><br><br>
-
-        <label>Description:</label><br>
-        <textarea name="description" rows="3" cols="30" th:text="${description}"></textarea><br><br>
-
-        <button type="submit">Save</button>
-    </form>
-
-    <div style="text-align:center; margin-top:20px;">
-        <a th:href="@{'/delete/' + ${task.id}}">Delete</a>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a th:href="@{/delete/{id}(id=${task.id})}" class="btn btn-danger">Delete</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 </body>

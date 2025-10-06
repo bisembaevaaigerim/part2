@@ -8,23 +8,21 @@
         <h2>Task list</h2>
         <a class="btn btn-primary" th:href="@{/add}">Add task</a>
     </div>
-    <table class="table table-bordered">
+    <table class="table table-bordered table-striped">
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Deadline</th>
-            <th>Completed</th>
-            <th>Actions</th>
+            <th>NAME</th>
+            <th>DEADLINE DATE</th>
+            <th>IS COMPLETED</th>
+            <th>DETAILS</th>
         </tr>
         <tr th:each="task : ${tasks}">
             <td th:text="${task.key}"></td>
             <td th:text="${task.value.name}"></td>
             <td th:text="${task.value.deadlineDate}"></td>
+            <td th:text="${task.value.completed} ? 'Yes' : 'No'">
             <td>
-                <span th:text="${task.value.completed} ? 'Yes' : 'No'"></span>
-            </td>
-            <td>
-                <a class="btn btn-sm btn-info" th:href="@{/task/{id}(id=${task.key})}">Details</a>
+                <a class="btn btn-secondary" th:href="@{/task/{id}(id=${task.key})}">Details</a>
             </td>
         </tr>
     </table>
